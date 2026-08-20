@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Brasil Contra as Bets · Chega de apostas</title>
+  <!-- Google Fonts: Open Sans & Roboto (fallback) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (gratuito) para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', 'Roboto', sans-serif;
+      background: #0a0a0a; /* FUNDO PRETO */
+      color: #ffffff; /* TEXTO BRANCO */
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* cores principais */
+    :root {
+      --vermelho: #E50914;
+      --vermelho-escuro: #b20710;
+      --branco: #ffffff;
+      --preto: #0a0a0a;
+      --cinza-escuro: #1a1a1a;
+      --cinza-claro: #2a2a2a;
+      --sombra: 0 8px 20px rgba(0,0,0,0.5);
+    }
+    /* tipografia */
+    h1, h2, h3, h4 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    .section {
+      padding: 4rem 0;
+      border-bottom: 1px solid #2a2a2a;
+    }
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* HEADER fixo */
+    header {
+      background: var(--preto);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.8);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.6rem 0;
+      border-bottom: 2px solid var(--vermelho);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo-titulo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-titulo i {
+      font-size: 2rem;
+      color: var(--vermelho);
+    }
+    .logo-titulo h1 {
+      font-size: 1.4rem;
+      color: var(--vermelho);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .logo-titulo span {
+      font-weight: 300;
+      color: #cccccc;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    nav a {
+      color: #ffffff; /* TEXTO BRANCO */
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+    nav a:hover, nav a:focus {
+      color: var(--vermelho);
+      border-bottom-color: var(--vermelho);
+    }
+    /* menu responsivo */
+    @media (max-width: 640px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+      }
+      nav ul {
+        justify-content: space-around;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        font-size: 0.85rem;
+      }
+      .logo-titulo h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--preto);
+      padding: 3rem 0 4rem;
+    }
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .hero-text {
+      flex: 1 1 300px;
+    }
+    .hero-text h2 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    .hero-text h2 i {
+      color: var(--vermelho);
+      margin-right: 0.2rem;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin: 1.5rem 0 2rem;
+      color: #cccccc; /* TEXTO CINZA CLARO */
+    }
+    .btn {
+      display: inline-block;
+      background: var(--vermelho);
+      color: var(--branco);
+      font-weight: 700;
+      padding: 0.8rem 2.4rem;
+      border-radius: 50px;
+      border: 2px solid var(--vermelho);
+      transition: all 0.25s;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(229, 9, 20, 0.3);
+    }
+    .btn:hover, .btn:focus {
+      background: var(--branco);
+      color: var(--vermelho);
+      border-color: var(--branco);
+      box-shadow: 0 6px 14px rgba(229, 9, 20, 0.5);
+      transform: scale(1.02);
+    }
+    .hero-image {
+      flex: 1 1 280px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: var(--sombra);
+      background: #1a1a1a;
+    }
+    /* ícone ilustrativo (fallback) */
+    .hero-image .img-placeholder {
+      font-size: 8rem;
+      color: var(--vermelho);
+      opacity: 0.5;
+    }
+
+    /* conscientização */
+    .depoimentos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .depoimento {
+      background: var(--cinza-escuro);
+      padding: 1.5rem 1.8rem;
+      border-radius: 20px;
+      flex: 1 1 220px;
+      border-left: 6px solid var(--vermelho);
+      color: #e0e0e0; /* TEXTO CLARO */
+    }
+    .depoimento i {
+      color: var(--vermelho);
+      font-size: 1.4rem;
+      margin-right: 0.3rem;
+    }
+    .depoimento .autor {
+      display: block;
+      margin-top: 0.8rem;
+      font-weight: 600;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+
+    /* seção ajuda */
+    .ajuda-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .ajuda-card {
+      background: var(--cinza-escuro);
+      padding: 1.8rem;
+      border-radius: 24px;
+      flex: 1 1 200px;
+      text-align: center;
+      color: #e0e0e0; /* TEXTO CLARO */
+    }
+    .ajuda-card i {
+      font-size: 2.4rem;
+      color: var(--vermelho);
+      margin-bottom: 0.6rem;
+    }
+    .ajuda-card .contato {
+      font-weight: 600;
+      color: var(--vermelho);
+    }
+    .ajuda-card h4 {
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+
+    /* seção assinatura */
+    .form-card {
+      background: var(--cinza-escuro);
+      padding: 2.5rem 2rem;
+      border-radius: 32px;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: var(--sombra);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.3rem;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 2px solid #444;
+      border-radius: 40px;
+      font-size: 1rem;
+      transition: 0.2s;
+      background: #1a1a1a;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    input::placeholder {
+      color: #888;
+    }
+    input:focus {
+      border-color: var(--vermelho);
+      outline: 0;
+      box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.2);
+      background: #222;
+    }
+    input.is-invalid {
+      border-color: #ff4444;
+      background: #2a0a0a;
+    }
+    .status-msg {
+      margin: 1rem 0;
+      font-weight: 600;
+      min-height: 2.2rem;
+    }
+    .status-msg.is-error { color: #ff6b6b; }
+    .status-msg.is-success { color: #69db7c; }
+    .thankyou-panel {
+      text-align: center;
+      padding: 1.5rem 0;
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    .thankyou-panel i {
+      font-size: 4rem;
+      color: var(--vermelho);
+      margin-bottom: 1rem;
+    }
+    .btn-outro {
+      background: transparent;
+      border: 2px solid var(--vermelho);
+      color: var(--branco);
+      padding: 0.6rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.2s;
+      cursor: pointer;
+      margin-top: 0.8rem;
+    }
+    .btn-outro:hover {
+      background: var(--vermelho);
+      color: var(--branco);
+    }
+    .spinner-border {
+      display: inline-block;
+      width: 1.2rem;
+      height: 1.2rem;
+      border: 3px solid currentColor;
+      border-right-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* contato */
+    .contato-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .contato-links a {
+      background: var(--cinza-escuro);
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 500;
+      transition: 0.2s;
+      border: 1px solid #333;
+      color: #e0e0e0; /* TEXTO CLARO */
+    }
+    .contato-links a:hover {
+      border-color: var(--vermelho);
+      background: var(--cinza-claro);
+      color: #ffffff; /* TEXTO BRANCO */
+    }
+    .contato-links i {
+      color: var(--vermelho);
+      font-size: 1.3rem;
+    }
+
+    /* rodapé */
+    footer {
+      background: var(--vermelho);
+      color: var(--branco);
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    footer .esperanca {
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+    footer small {
+      opacity: 0.85;
+      font-size: 0.85rem;
+    }
+
+    /* reveal (scroll) */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* acessibilidade */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    :focus-visible {
+      outline: 3px solid var(--vermelho);
+      outline-offset: 3px;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+    img[alt] {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo-titulo">
+      <i class="fas fa-shield-alt" aria-hidden="true"></i>
+      <h1>Chega de Bets <span>no Brasil</span></h1>
+    </div>
+    <nav aria-label="Menu principal">
+      <ul>
+        <li><a href="#conscientizacao">Assine</a></li>
+        <li><a href="#ajuda">Ajuda</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h2><i class="fas fa-times-circle" aria-hidden="true"></i> Vício em apostas destrói vidas.</h2>
+        <p><strong>Chega de bets.</strong> Assine a petição e ajude a proibir as apostas esportivas no Brasil. Sua voz é a mudança.</p>
+        <a href="#assinatura" class="btn"><i class="fas fa-pen" aria-hidden="true"></i> Assine a petição agora</a>
+      </div>
+      <div class="hero-image">
+        <!-- imagem ilustrativa (ícone + texto alternativo) -->
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%231a1a1a'/%3E%3Ctext x='30' y='150' font-family='Open Sans' font-size='28' fill='%23E50914' font-weight='700'%3E%F0%9F%92%AA Esperança%3C/text%3E%3Ctext x='30' y='200' font-family='Open Sans' font-size='20' fill='%23cccccc'%3ESupera%c3%a7%c3%a3o come%c3%a7a aqui%3C/text%3E%3C/svg%3E"
+             alt="Ilustração de esperança e superação: mãos unidas e coração" width="400" height="300" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSCIENTIZAÇÃO -->
+  <section class="section" id="conscientizacao">
+    <div class="container reveal">
+      <h2><i class="fas fa-bullhorn" aria-hidden="true" style="color:var(--vermelho)"></i> Os danos das apostas</h2>
+      <p style="font-size:1.15rem; max-width:800px; color:#cccccc;">As bets não são um jogo inofensivo. Endividamento, ansiedade, depressão e ruptura familiar são consequências reais. Mas há saída.</p>
+      <div class="depoimentos">
+        <div class="depoimento"><i class="fas fa-quote-left" aria-hidden="true"></i> “Perdi tudo, mas recuperei minha vida. Hoje ajudo outros a sair.” <span class="autor">— Carlos M.</span></div>
+        <div class="depoimento"><i class="fas fa-quote-left" aria-hidden="true"></i> “A aposta era uma fuga. Com apoio, encontrei força para parar.” <span class="autor">— Fernanda R.</span></div>
+        <div class="depoimento"><i class="fas fa-quote-left" aria-hidden="true"></i> “Minha família me deu a mão. Vocês não estão sozinhos.” <span class="autor">— Júlio S.</span></div>
+      </div>
+      <p style="font-weight:700; font-size:1.3rem; margin-top:1.8rem; color:#ffffff;"><i class="fas fa-heart" style="color:var(--vermelho)"></i> Você não está sozinho. Assine e faça parte da mudança.</p>
+    </div>
+  </section>
+
+  <!-- AJUDA -->
+  <section class="section" id="ajuda">
+    <div class="container reveal">
+      <h2><i class="fas fa-hand-holding-heart" style="color:var(--vermelho)"></i> Apoio para recomeçar</h2>
+      <p style="margin-bottom:1.5rem; color:#cccccc;">Se você ou alguém que conhece precisa de ajuda, esses canais estão abertos. Você merece apoio.</p>
+      <div class="ajuda-grid">
+        <div class="ajuda-card"><i class="fas fa-phone-alt"></i> <h4>CVV 188</h4><p>Atendimento 24h, gratuito e sigiloso.</p><span class="contato">Ligue: <a href="tel:188">188</a></span></div>
+        <div class="ajuda-card"><i class="fas fa-users"></i> <h4>Grupos de apoio</h4><p>Compartilhe experiências e encontre acolhimento.</p></div>
+        <div class="ajuda-card"><i class="fas fa-brain"></i> <h4>Atendimento psicológico</h4><p>Profissionais prontos para ajudar.</p><span class="contato">Busque no SUS ou particular</span></div>
+      </div>
+      <a href="#contato" class="btn"><i class="fas fa-heart" aria-hidden="true"></i> Preciso de ajuda</a>
+    </div>
+  </section>
+
+  <!-- ASSINATURA -->
+  <section class="section" id="assinatura">
+    <div class="container reveal">
+      <h2><i class="fas fa-pen-fancy" style="color:var(--vermelho)"></i> Assine a petição</h2>
+      <p style="margin-bottom:2rem; color:#cccccc;">Seu nome e e-mail são suficientes. Juntos, faremos a diferença.</p>
+      <div class="form-card" id="signupCard">
+        <!-- formulário -->
+        <form id="formAssinatura" novalidate>
+          <div class="form-group">
+            <label for="nomeCompleto">Nome completo</label>
+            <input type="text" id="nomeCompleto" placeholder="Seu nome" required aria-required="true" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com" required aria-required="true" autocomplete="email">
+          </div>
+          <div id="formStatus" class="status-msg" role="alert" aria-live="polite"></div>
+          <button type="submit" class="btn" id="btnAssinar" style="width:100%; justify-content:center; display:flex; gap:0.8rem; align-items:center;">
+            <span class="btn-text">QUERO ASSINAR</span>
+            <span class="spinner-border d-none" aria-hidden="true"></span>
+          </button>
+          <p id="signupCardSub" style="margin-top:1rem; font-size:0.9rem; color:#888;"><i class="fas fa-lock" style="color:var(--vermelho)"></i> Seus dados são seguros.</p>
+        </form>
+
+        <!-- painel agradecimento -->
+        <div id="thankYouPanel" class="thankyou-panel d-none" tabindex="-1">
+          <i class="fas fa-check-circle" aria-hidden="true"></i>
+          <h3>Obrigado, <span id="thankYouName">amigo</span>!</h3>
+          <p>Sua assinatura fortalece a luta contra as bets no Brasil.<br>Compartilhe com quem você gosta.</p>
+          <button id="btnAssinarOutro" class="btn-outro"><i class="fas fa-user-plus"></i> Assinar com outro nome</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section" id="contato">
+    <div class="container reveal">
+      <h2><i class="fas fa-envelope" style="color:var(--vermelho)"></i> Fale conosco</h2>
+      <p style="color:#cccccc;">Dúvidas, sugestões ou parcerias: estamos aqui.</p>
+      <div class="contato-links">
+        <a href="mailto:contato@brasilcontrabets.org" aria-label="Enviar e-mail"><i class="fas fa-envelope"></i> contato@brasilcontrabets.org</a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> @brasilcontrabets</a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i> @brasilcontrabets</a>
+        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> (11) 99999-9999</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="esperanca"><i class="fas fa-heart" style="margin-right:6px;"></i> A esperança é mais forte que a aposta. Assine e transforme.</div>
+    <small>&copy; 2026 Brasil Contra as Bets · Todos os direitos reservados.</small>
+    <small style="display:block; margin-top:0.2rem;">Este site é informativo e não substitui acompanhamento profissional.</small>
+  </div>
+</footer>
+
+<!-- Scripts: Firebase + nosso módulo -->
+<script type="importmap">
+  {
+    "imports": {
+      "firebase": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+      "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+    }
+  }
+</script>
+
+<!-- inline: configuração firebase + script principal (compatível com o código fornecido) -->
+<script type="module" src="js/firebase.js"></script>
+<script type="module" src="js/script.js"></script>
+
+<!-- pequeno ajuste: garantir que .d-none funcione -->
+<style>.d-none { display: none !important; }</style>
+</body>
+</html>
